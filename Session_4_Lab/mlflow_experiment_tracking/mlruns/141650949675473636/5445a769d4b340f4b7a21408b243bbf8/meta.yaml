@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/rajan/Downloads/BITS_AI_ML/MLOPS/mlflow_project/mlruns/141650949675473636/5445a769d4b340f4b7a21408b243bbf8/artifacts
+end_time: 1720359822705
+entry_point_name: ''
+experiment_id: '141650949675473636'
+lifecycle_stage: active
+run_id: 5445a769d4b340f4b7a21408b243bbf8
+run_name: nosy-bass-323
+run_uuid: 5445a769d4b340f4b7a21408b243bbf8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1720359815726
+status: 3
+tags: []
+user_id: rajan
