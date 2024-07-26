@@ -63,7 +63,7 @@ def diabetesPrediction():
 
         # Format the result into the desired structure
         formatted_result = {
-            "Your diabetes test results are:": result_message
+            "Based on your test report, the diabetes result is:": result_message
         }
 
         return jsonify(formatted_result)

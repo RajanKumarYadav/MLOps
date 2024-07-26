@@ -37,7 +37,7 @@ def diabetesPrediction():
 
             
             output = model.predict(input)
-            final_predictions = pd.DataFrame(list(output),columns = ["Your Diabetese Test Is"]).to_dict(orient="records")
+            final_predictions = pd.DataFrame(list(output),columns = ["Based on your test report, the diabetes result is:"]).to_dict(orient="records")
  
             return jsonify(final_predictions) 
 
