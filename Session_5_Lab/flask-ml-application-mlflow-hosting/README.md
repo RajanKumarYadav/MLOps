@@ -24,7 +24,7 @@ mlflow server --host 0.0.0.0 --port 5000
 ### Host and load the model to MLFlow Server 
 ```bash
 mlflow models serve --model-uri runs:/<Run ID>/model --port 5021 --no-conda
-```bash
+```
 
 ```bash
 mlflow models serve --model-uri runs:/203ab8be70d24f8486d67c0ae042cfae/model --port 5021 --no-conda
