@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1722003841122
+current_stage: None
+description: null
+last_updated_timestamp: 1722003841122
+name: model_diabetes_prediction
+run_id: 54019c7d3e164761b6fe4ef6db666e82
+run_link: null
+source: file:///C:/Users/rajan/Downloads/BITS_AI_ML/MLOps/Session_5_Lab/mlflow_model_hosting/mlruns/318355188011290987/54019c7d3e164761b6fe4ef6db666e82/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///C:/Users/rajan/Downloads/BITS_AI_ML/MLOps/Session_5_Lab/mlflow_model_hosting/mlruns/318355188011290987/54019c7d3e164761b6fe4ef6db666e82/artifacts/model
+user_id: null
+version: 1

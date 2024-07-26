@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 import joblib
 
-# Load the Iris dataset
+# Load the dataset
 df = pd.read_csv('diabetes.csv')
 X = df.drop('Outcome',axis=1)
 y = df['Outcome']

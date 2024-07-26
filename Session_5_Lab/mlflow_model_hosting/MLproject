@@ -1,0 +1,10 @@
+name: my_mlflow_project
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      random_state: {type: int, default: 0}
+      max_iter: {type: int, default: 1000}
+    command: "python train.py --random_state {random_state} --max_iter {max_iter}"
