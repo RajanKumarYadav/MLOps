@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diabetes-prediction-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diabetes-prediction-app
+  template:
+    metadata:
+      labels:
+        app: diabetes-prediction-app
+    spec:
+      containers:
+      - name: diabetes-prediction-app
+        image: diabetes_prediction_app:0.0.10
+        ports:
+        - containerPort: 6000
