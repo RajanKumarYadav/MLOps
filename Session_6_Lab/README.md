@@ -1,5 +1,3 @@
-Sure! Below is the content for a `README.md` file that includes the detailed instructions for installing Minikube and running a Flask Docker image application for machine learning on Windows.
-
 ```markdown
 # Running Flask Docker Image Application for Machine Learning on Windows with Minikube
 
@@ -33,7 +31,7 @@ This guide provides detailed instructions for installing Minikube and running a 
 
 1. Open PowerShell or Command Prompt.
 2. Start Minikube with the Docker driver:
-   ```sh
+   ```bash
    minikube start --driver=docker
    ```
 
@@ -146,4 +144,4 @@ This command will provide you with the URL where your Flask application is acces
 ## Conclusion
 
 These steps will help you set up Minikube, build and deploy a Flask Docker image, and run it within a Kubernetes cluster on Windows. 
-```
+
