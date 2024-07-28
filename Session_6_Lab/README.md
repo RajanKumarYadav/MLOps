@@ -121,3 +121,17 @@ This guide provides step-by-step instructions to install Minikube on a local Win
 
 
 
+### Deleting the Deployment and Service
+
+1. Delete the deployment:
+   ```sh
+   kubectl delete -f flask-deployment.yaml
+   ```
+
+2. Delete the service:
+   ```sh
+   kubectl delete -f flask-service.yaml
+   ```
+
+This will remove the Flask application deployment and service from your Minikube cluster.
+
