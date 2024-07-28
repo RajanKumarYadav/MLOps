@@ -3,134 +3,121 @@
 
 This guide provides step-by-step instructions to install Minikube on a local Windows machine and deploy a Flask Docker application.
 
-## Prerequisites
+## 1. Install Prerequisites
 
-- **Windows 10/11**
-- **Docker Desktop** installed and running
-- **Kubernetes** enabled in Docker Desktop
-- **PowerShell** or **Command Prompt**
+### a. Install Docker Desktop
 
-## Steps
+1. Download Docker Desktop for Windows from [Docker's official site](https://www.docker.com/products/docker-desktop).
+2. Run the installer and follow the prompts.
+3. Once installed, launch Docker Desktop and ensure it's running properly.
 
-### 1. Install Minikube
+### b. Install Minikube
 
-    1. Download and install Minikube using the installer:
-      - Download the latest Minikube installer from the [Minikube Releases page](https://github.com/kubernetes/minikube/releases).
-      - Run the installer and follow the installation steps.
+1. Download the Minikube executable from the [Minikube releases page](https://github.com/kubernetes/minikube/releases).
+   - Look for the latest Windows release and download the `.exe` file.
+2. Add Minikube to your system’s PATH:
+   - Move the `minikube.exe` file to a directory that's in your PATH (e.g., `C:\Program Files\` or `C:\Windows\System32\`).
 
-    2. Verify the installation by opening a new terminal and running:
-      ```sh
-      minikube version
-      ```
+### c. Install kubectl
 
-### 2. Start Minikube
+1. Download the `kubectl` binary from the [Kubernetes releases page](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+2. Add `kubectl` to your system’s PATH, similar to Minikube.
 
-Start Minikube with the Docker driver:
-```sh
-minikube start --driver=docker
-```
+## 2. Start Minikube
 
-### 3. Configure Docker to Use Minikube’s Docker Daemon
-
-#### Using Command Prompt
-
-1. Open Command Prompt.
-2. Run the following command and follow the output instructions:
-   ```cmd
-   minikube -p minikube docker-env --shell cmd
+1. Open a command prompt or PowerShell.
+2. Run the following command to start Minikube with Docker as the driver:
+   ```sh
+   minikube start --driver=docker
    ```
 
-### 4. Build the Docker Image
+## 3. Create a Docker Image for Flask
 
-1. Navigate to the directory containing your `Dockerfile`.
+1. Create a `Dockerfile` for your Flask application. For example:
+   ```Dockerfile
+   # Use the official Python image from the Docker Hub
+   FROM python:3.9-slim
+
+   # Set the working directory in the container
+   WORKDIR /app
+
+   # Copy the requirements file and install dependencies
+   COPY requirements.txt requirements.txt
+   RUN pip install -r requirements.txt
+
+   # Copy the rest of the application code
+   COPY . .
+
+   # Set the environment variable for Flask
+   ENV FLASK_APP=app.py
+
+   # Expose the port the app runs on
+   EXPOSE 5000
+
+   # Run the Flask application
+   CMD ["flask", "run", "--host=0.0.0.0"]
+   ```
+
 2. Build the Docker image:
    ```sh
-   docker build -t diabetes_prediction_app:0.0.11 .
+   docker build -t flask-app .
    ```
 
-### 5. Create Kubernetes Deployment and Service YAML Files
+## 4. Deploy Flask Application to Minikube
 
-Create `deployment.yaml`:
+1. Create a Kubernetes deployment YAML file, e.g., `flask-deployment.yaml`:
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: flask-app
+   spec:
+     replicas: 1
+     selector:
+       matchLabels:
+         app: flask-app
+     template:
+       metadata:
+         labels:
+           app: flask-app
+       spec:
+         containers:
+         - name: flask-app
+           image: flask-app:latest
+           ports:
+           - containerPort: 5000
+   ```
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: diabetes-prediction-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: diabetes-prediction-app
-  template:
-    metadata:
-      labels:
-        app: diabetes-prediction-app
-    spec:
-      containers:
-      - name: diabetes-prediction-app
-        image: diabetes_prediction_app:0.0.11
-        ports:
-        - containerPort: 5000
-```
+2. Create a service YAML file, e.g., `flask-service.yaml`:
+   ```yaml
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: flask-service
+   spec:
+     selector:
+       app: flask-app
+     ports:
+       - protocol: TCP
+         port: 80
+         targetPort: 5000
+     type: NodePort
+   ```
 
-Create `service.yaml`:
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: diabetes-prediction-app-service
-spec:
-  selector:
-    app: diabetes-prediction-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: LoadBalancer
-```
-
-### 6. Apply the Kubernetes Deployment and Service
-
-1. Apply the deployment:
+3. Apply the deployment and service files to Minikube:
    ```sh
-   kubectl apply -f deployment.yaml
+   kubectl apply -f flask-deployment.yaml
+   kubectl apply -f flask-service.yaml
    ```
 
-2. Apply the service:
+## 5. Access the Flask Application
+
+1. Get the Minikube service URL:
    ```sh
-   kubectl apply -f service.yaml
+   minikube service flask-service --url
    ```
 
-### 7. Verify the Deployment
+2. Open the provided URL in your browser/Postman to access your Flask application.
 
-1. Check the status of the pods:
-   ```sh
-   kubectl get pods
-   ```
 
-2. If the pod is not running, describe it for more details:
-   ```sh
-   kubectl describe pod <pod-name>
-   ```
-
-### 8. Access Your Flask Application
-
-Get the URL to access your Flask application:
-```sh
-minikube service diabetes-prediction-app-service --url
-```
-
-Open the provided URL in your browser to see your Flask application.
-
-## Troubleshooting
-
-- If you encounter an `ImagePullBackOff` error, ensure the image is built within Minikube’s Docker environment.
-- Ensure Minikube has internet access:
-  ```sh
-  minikube ssh -- curl -I https://registry.hub.docker.com
-  ```
-
-```
 
