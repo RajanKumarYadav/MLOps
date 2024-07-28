@@ -1,5 +1,4 @@
 
-```markdown
 # Setting Up Minikube on Windows and Running a Flask Docker Application
 
 This guide provides step-by-step instructions to install Minikube on a local Windows machine and deploy a Flask Docker application.
@@ -15,14 +14,14 @@ This guide provides step-by-step instructions to install Minikube on a local Win
 
 ### 1. Install Minikube
 
-1. Download and install Minikube using the installer:
-   - Download the latest Minikube installer from the [Minikube Releases page](https://github.com/kubernetes/minikube/releases).
-   - Run the installer and follow the installation steps.
+    1. Download and install Minikube using the installer:
+      - Download the latest Minikube installer from the [Minikube Releases page](https://github.com/kubernetes/minikube/releases).
+      - Run the installer and follow the installation steps.
 
-2. Verify the installation by opening a new terminal and running:
-   ```sh
-   minikube version
-   ```
+    2. Verify the installation by opening a new terminal and running:
+      ```sh
+      minikube version
+      ```
 
 ### 2. Start Minikube
 
@@ -32,14 +31,6 @@ minikube start --driver=docker
 ```
 
 ### 3. Configure Docker to Use Minikube’s Docker Daemon
-
-#### Using PowerShell
-
-1. Open PowerShell as Administrator.
-2. Run the following command to configure Docker to use Minikube's Docker daemon:
-   ```powershell
-   & minikube -p minikube docker-env | Invoke-Expression
-   ```
 
 #### Using Command Prompt
 
