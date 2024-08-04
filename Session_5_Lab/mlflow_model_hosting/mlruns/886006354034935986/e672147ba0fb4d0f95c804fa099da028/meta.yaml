@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/886006354034935986/e672147ba0fb4d0f95c804fa099da028/artifacts
+end_time: 1722152640632
+entry_point_name: ''
+experiment_id: '886006354034935986'
+lifecycle_stage: active
+run_id: e672147ba0fb4d0f95c804fa099da028
+run_name: chill-ray-943
+run_uuid: e672147ba0fb4d0f95c804fa099da028
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722152627368
+status: 3
+tags: []
+user_id: rajan

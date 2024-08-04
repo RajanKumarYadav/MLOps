@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1722152640348
+current_stage: None
+description: ''
+last_updated_timestamp: 1722152640348
+name: model_diabetes_prediction
+run_id: e672147ba0fb4d0f95c804fa099da028
+run_link: ''
+source: mlflow-artifacts:/886006354034935986/e672147ba0fb4d0f95c804fa099da028/artifacts/model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/886006354034935986/e672147ba0fb4d0f95c804fa099da028/artifacts/model
+user_id: null
+version: 2

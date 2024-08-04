@@ -115,6 +115,7 @@ This guide provides step-by-step instructions to install Minikube on a local Win
 1. Get the Minikube service URL:
    ```sh
    minikube service flask-service --url
+   minikube service diabetes-prediction-app-service --url
    ```
 
 2. Open the provided URL in your browser/Postman to access your Flask application.
