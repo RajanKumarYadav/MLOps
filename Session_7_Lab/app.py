@@ -20,8 +20,8 @@ def diabetesPrediction():
         # Get JSON data from the request
         data = request.json
 
-        # var =10
-        # test = var / 0
+        var =10
+        test = var / 0
         
         # Use of Logger 
         logging.info("The Flask Application has started")
