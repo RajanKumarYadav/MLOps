@@ -19,7 +19,6 @@ cookiecutter gh:audreyfeldroy/cookiecutter-pypackage
 
 ## Logging & Exception
 
-
-### Host and load the model to MLFlow Server 
+Run the app.py with or without exception and check logs
 
 
